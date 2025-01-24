@@ -21,26 +21,15 @@ public class Main {
        // Wait for connection from client.
        clientSocket = serverSocket.accept();
        InputStream inputStream = clientSocket.getInputStream();
-       System.out.println("Available bytes in the stream: " + inputStream.available());
 
-       byte[] requestMessage = inputStream.readNBytes(12);
-       System.out.print("Hex representation: ");
-       for (byte b : requestMessage) {
-             System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
-       }
-       byte[] correlationId = Arrays.copyOfRange(requestMessage, requestMessage.length - 4, requestMessage.length);
+       byte[] message = inputStream.readNBytes(4);
+       byte[] requestApiKey = inputStream.readNBytes(2);
+       byte[] requestApiVersion = inputStream.readNBytes(2);
+       byte[] correlationId = inputStream.readNBytes(4);
 
-
-       System.out.print("Hex representation: ");
-       for (byte b : correlationId) {
-           System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
-       }
 
        OutputStream outputStream = clientSocket.getOutputStream();
-
        outputStream.write(new byte[] {0,0,0,0});
-//       outputStream.write(new byte[] {0,0,0,7});
-
        outputStream.write(correlationId);
      } catch (IOException e) {
        System.out.println("IOException: " + e.getMessage());
