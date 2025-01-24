@@ -26,11 +26,11 @@ public class Main {
        System.out.println("received requestMessage" + requestMessage.toString());
        byte[] correlationId = Arrays.copyOfRange(requestMessage, requestMessage.length - 4, requestMessage.length);
 
-       System.out.println("parsed correlationId" + correlationId.toString());
+       System.out.println("parsed correlationId" + new String(correlationId, "UTF-8"));
 
 
 
-         OutputStream outputStream = clientSocket.getOutputStream();
+       OutputStream outputStream = clientSocket.getOutputStream();
 
        outputStream.write(new byte[] {0,0,0,0});
 //       outputStream.write(new byte[] {0,0,0,7});
