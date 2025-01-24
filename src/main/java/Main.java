@@ -28,7 +28,10 @@ public class Main {
 
        System.out.println("parsed correlationId" + new String(correlationId, "UTF-8"));
 
-
+       System.out.print("Hex representation: ");
+       for (byte b : correlationId) {
+           System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
+       }
 
        OutputStream outputStream = clientSocket.getOutputStream();
 
