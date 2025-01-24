@@ -1,7 +1,9 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class Main {
   public static void main(String[] args){
@@ -18,10 +20,21 @@ public class Main {
        serverSocket.setReuseAddress(true);
        // Wait for connection from client.
        clientSocket = serverSocket.accept();
+       InputStream inputStream = clientSocket.getInputStream();
+       byte[] requestMessage = new byte[12];
+       requestMessage = inputStream.readAllBytes();
+       System.out.println(requestMessage);
+       byte[] correlationId = Arrays.copyOfRange(requestMessage, requestMessage.length - 4, requestMessage.length);
+
+
+
+
        OutputStream outputStream = clientSocket.getOutputStream();
 
        outputStream.write(new byte[] {0,0,0,0});
-       outputStream.write(new byte[] {0,0,0,7});
+//       outputStream.write(new byte[] {0,0,0,7});
+
+       outputStream.write(correlationId);
      } catch (IOException e) {
        System.out.println("IOException: " + e.getMessage());
      } finally {
