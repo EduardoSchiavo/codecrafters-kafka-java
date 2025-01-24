@@ -23,7 +23,6 @@ public class Main {
        InputStream inputStream = clientSocket.getInputStream();
        byte[] requestMessage = new byte[12];
        requestMessage = inputStream.readAllBytes();
-       System.out.println("received requestMessage" + requestMessage.toString());
        System.out.print("Hex representation: ");
        for (byte b : requestMessage) {
              System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
