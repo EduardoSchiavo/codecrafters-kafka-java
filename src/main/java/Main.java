@@ -24,6 +24,10 @@ public class Main {
        byte[] requestMessage = new byte[12];
        requestMessage = inputStream.readAllBytes();
        System.out.println("received requestMessage" + requestMessage.toString());
+       System.out.print("Hex representation: ");
+       for (byte b : requestMessage) {
+             System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
+       }
        byte[] correlationId = Arrays.copyOfRange(requestMessage, requestMessage.length - 4, requestMessage.length);
 
        System.out.println("parsed correlationId" + new String(correlationId, "UTF-8"));
