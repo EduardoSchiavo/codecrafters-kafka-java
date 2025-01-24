@@ -23,14 +23,13 @@ public class Main {
        InputStream inputStream = clientSocket.getInputStream();
        System.out.println("Available bytes in the stream: " + inputStream.available());
 
-       byte[] requestMessage = inputStream.readAllBytes();
+       byte[] requestMessage = inputStream.readNBytes(12);
        System.out.print("Hex representation: ");
        for (byte b : requestMessage) {
              System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
        }
        byte[] correlationId = Arrays.copyOfRange(requestMessage, requestMessage.length - 4, requestMessage.length);
 
-       System.out.println("parsed correlationId" + new String(correlationId, "UTF-8"));
 
        System.out.print("Hex representation: ");
        for (byte b : correlationId) {
