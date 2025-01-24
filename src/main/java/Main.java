@@ -21,8 +21,9 @@ public class Main {
        // Wait for connection from client.
        clientSocket = serverSocket.accept();
        InputStream inputStream = clientSocket.getInputStream();
-       byte[] requestMessage = new byte[12];
-       requestMessage = inputStream.readAllBytes();
+       System.out.println("Available bytes in the stream: " + inputStream.available());
+
+       byte[] requestMessage = inputStream.readAllBytes();
        System.out.print("Hex representation: ");
        for (byte b : requestMessage) {
              System.out.printf("%02X ", b); // Format each byte as two uppercase hex digits
