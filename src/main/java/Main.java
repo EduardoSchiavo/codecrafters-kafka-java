@@ -23,13 +23,14 @@ public class Main {
        InputStream inputStream = clientSocket.getInputStream();
        byte[] requestMessage = new byte[12];
        requestMessage = inputStream.readAllBytes();
-       System.out.println(requestMessage);
+       System.out.println("received requestMessage" + requestMessage.toString());
        byte[] correlationId = Arrays.copyOfRange(requestMessage, requestMessage.length - 4, requestMessage.length);
 
+       System.out.println("parsed correlationId" + correlationId.toString());
 
 
 
-       OutputStream outputStream = clientSocket.getOutputStream();
+         OutputStream outputStream = clientSocket.getOutputStream();
 
        outputStream.write(new byte[] {0,0,0,0});
 //       outputStream.write(new byte[] {0,0,0,7});
