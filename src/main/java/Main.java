@@ -10,10 +10,7 @@ public class Main {
 
     private static boolean validateApiVersion(byte[] version){
         short value = ByteBuffer.wrap(version).getShort();
-        if (value < 0 || value > 4){
-            return false;
-        }
-        return true;
+        return value >= 0 && value <= 4;
     }
 
     public static void main(String[] args){
