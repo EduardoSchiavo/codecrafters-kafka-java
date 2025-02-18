@@ -41,9 +41,12 @@ public class Main {
             }
 
             OutputStream outputStream = clientSocket.getOutputStream();
-            outputStream.write(new byte[] {0,0,0,0});
+            outputStream.write(new byte[] {0,0,0,2});
             outputStream.write(correlationId);
             outputStream.write(errorCode);
+
+            //testing
+            outputStream.write(requestApiKey);
             } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
             } finally {
