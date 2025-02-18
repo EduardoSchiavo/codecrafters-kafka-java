@@ -41,7 +41,7 @@ public class Main {
             }
 
             OutputStream outputStream = clientSocket.getOutputStream();
-            outputStream.write(new byte[] {0,0,0,2});
+            outputStream.write(new byte[] {0,1,0,0});
             outputStream.write(correlationId);
             outputStream.write(errorCode);
 
