@@ -46,9 +46,9 @@ public class Main {
             outputStream.write(errorCode);
 
             //testing
-            outputStream.write((short)18);
-            outputStream.write((short)3);
-            outputStream.write((short)4);
+            outputStream.write(requestApiKey);
+            outputStream.write(new byte[] {0, 3});
+            outputStream.write(new byte[] {0, 4});
 //            outputStream.write((byte)0);
 //            outputStream.write(new byte[] {0, 0, 0, 0});
 //            outputStream.write((byte)0);
